@@ -1,0 +1,1 @@
+from upwind.settings import *
