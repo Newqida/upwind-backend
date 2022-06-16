@@ -1,0 +1,29 @@
+# Used for running tests in GithubActions
+version: '3'
+
+
+services:
+  sut:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    image: upwind-api
+    depends_on:
+      - postgres_ci
+    environment:
+      USE_DOCKER: "yes"
+      DJANGO_ADMIN_URL: admin/
+      DJANGO_SECRET_KEY: not_so_secret
+      DJANGO_DEFAULT_FILE_STORAGE: django.core.files.storage.FileSystemStorage
+      DATABASE_URL: postgres://debug:debug@postgres_ci:5432/debug
+      PORT: 8000
+      HOST: 0.0.0.0
+
+  postgres_ci:
+    image: postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: debug
+      POSTGRES_USER: debug
+      POSTGRES_PASSWORD: debug
