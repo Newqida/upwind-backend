@@ -1,0 +1,10 @@
+{
+    "python.testing.pytestArgs": [
+        "jwt_auth",
+        "habits",
+        "users",
+        "relapses"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
